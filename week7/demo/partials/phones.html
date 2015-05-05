@@ -1,0 +1,66 @@
+
+
+<h1>Phone Types</h1>
+
+
+<div class="content">
+    
+    <h3>Add Phone</h3>
+
+   
+        <form action="#" method="post">
+            <label>Phone:</label>            
+            <input type="text" name="phone" value="" placeholder="" />
+            <br /><br />
+            <label>Active:</label>
+            <input type="number" max="1" min="0" name="active" value="" />
+            
+            <br /><br />
+            <label>Phone Type:</label>
+            <select name="phonetypeid">
+                <option ng-repeat="phonetype in phoneTypes" value="{{phonetype.phonetypeid}}">{{phonetype.phonetype}}</option>               
+            </select>
+            
+             <br /><br />
+             <input type="hidden"  name="phoneid" value="" />
+            
+            <input type="submit" value="Submit" />
+        </form>
+
+    <br />
+    <br /> 
+
+    <button>Add Phone</button>
+    <br />
+    <br /> 
+
+    <table class="gridtable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Phone</th>
+                <th>Phone Type</th>
+                <th>Active</th>
+                <th>logged</th>
+                <th>last updated</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>    
+        
+        <tr ng-repeat="phone in phones">
+            <td>{{phone.phoneid}}</td>                  
+            <td>{{phone.phone}}</td>                  
+            <td>{{phone.phonetype}}</td>  
+            <td>{{phone.active}}</td>  
+            <td>{{phone.logged}}</td>  
+            <td>{{phone.lastupdated}}</td>  
+            <td><button>Update</button></td>
+            <td><button>Delete</button></td>
+        </tr>
+    </table>
+</div>
+
+<div class="content footer">
+    <a href="#/phonetypes">Phone Types</a>
+</div>

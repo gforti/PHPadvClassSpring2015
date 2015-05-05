@@ -1,0 +1,71 @@
+/* app css stylesheet */
+
+
+h1 {
+    background-color: #EEE;
+    border: 1px solid black;
+    padding: 0.1em;
+    text-align: center;
+    
+}
+
+
+ul.phone {
+    list-style: none;
+}
+
+ul.phone li {
+    width: 300px;
+    float: left;
+    height: 300px;
+    padding: 0.5em;
+    border: 5px solid black;
+    background-color: #FFF;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+ul.phone li:hover {
+  
+    border: 5px solid blue;
+    background-color: #eee;
+    
+}
+
+ul.phone img {
+  
+   width: 250px;
+    
+}
+
+.content {
+    text-align: center;
+}
+
+.gridtable {	
+	border-width: 1px;
+	border-color: #999;
+	border-collapse: collapse;
+        margin: 0 auto;
+}
+.gridtable th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+.gridtable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+
+.footer {
+    margin-top: 2em;
+    border-top: 1px solid black;
+    padding: 1em;
+}

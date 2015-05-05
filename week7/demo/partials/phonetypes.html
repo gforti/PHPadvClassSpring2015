@@ -1,0 +1,47 @@
+
+
+<h1>Phone Types</h1>
+
+
+<div class="content">
+    
+    <h3>Add Phone Type</h3>
+
+    <label>Phone Type:</label> 
+    <input type="text" name="phonetype" value="" placeholder="" />
+     <label>Active:</label> 
+    <input type="number" max="1" min="0" name="Active" value="" /> 
+    <input type="hidden"  name="phonetypeid" value="" />
+
+    <input type="submit" value="Submit" />
+
+    <br />
+    <br /> 
+
+    <button>Add Phone Type</button>
+    <br />
+    <br /> 
+
+    <table class="gridtable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Phone Type</th>
+                <th>Active</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>        
+        <tr ng-repeat="phonetype in phoneTypes">
+            <td>{{phonetype.phonetypeid}}</td>                  
+            <td>{{phonetype.phonetype}}</td>                  
+            <td>{{phonetype.active}}</td>  
+            <td><button>Update</button></td>
+            <td><button>Delete</button></td>
+        </tr>
+    </table>
+</div>
+
+<div class="content footer">
+    <a href="#/phones">Phones</a>
+</div>

@@ -55,12 +55,13 @@ final class Index {
     $_validator = new Validator();
 
     $_phoneTypemodel = new PhoneTypeModel();
+    $_phoneModel = new PhoneModel();
 
     $_phoneTypeDAO = new PhoneTypeDAO($_pdo->getDB(), $_phoneTypemodel, $_log);
+    $_phoneDAO = new PhoneDAO($_pdo->getDB(), $_phoneModel, $_log);
 
     $_phoneTypeService = new PhoneTypeService($_phoneTypeDAO, $_validator, $_phoneTypemodel );
-
-        
+    $_phoneService = new PhoneService($_phoneDAO, $_phoneTypeService, $_validator, $_phoneModel );        
      
      
     /*
@@ -75,6 +76,9 @@ final class Index {
 
     $_restServer->addDIResourceRequest('phonetypes', function() use ($_phoneTypeService ) {       
         return new PhonetypeRequest($_phoneTypeService);
+    })    
+    ->addDIResourceRequest('phones', function() use ($_phoneService ) {       
+        return new PhoneRequest($_phoneService);
     })
     ;
     // run application!

@@ -35,7 +35,7 @@
         <tr ng-repeat="phonetype in phoneTypes">
             <td>{{phonetype.phonetypeid}}</td>                  
             <td>{{phonetype.phonetype}}</td>                  
-            <td>{{phonetype.active}}</td>  
+            <td>{{phonetype.active | activeString}}</td>  
             <td><button>Update</button></td>
             <td><button>Delete</button></td>
         </tr>

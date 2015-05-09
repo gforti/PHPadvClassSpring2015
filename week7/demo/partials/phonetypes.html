@@ -5,20 +5,15 @@
 
 <div class="content">
     
-    <h3>Add Phone Type</h3>
-
+    <h3>Add Phone Type</h3>    
     <label>Phone Type:</label> 
-    <input type="text" name="phonetype" value="" placeholder="" />
+    <input type="text" name="phonetype" value="" placeholder="" ng-model="phonetype" />
      <label>Active:</label> 
-    <input type="number" max="1" min="0" name="Active" value="" /> 
-    <input type="hidden"  name="phonetypeid" value="" />
+    <input type="number" max="1" min="0" name="Active" value="" ng-model="active" /> 
+    
+    <input type="submit" value="Submit" ng-click="addPhoneType()" />
 
-    <input type="submit" value="Submit" />
-
-    <br />
-    <br /> 
-
-    <button>Add Phone Type</button>
+ 
     <br />
     <br /> 
 
@@ -36,10 +31,25 @@
             <td>{{phonetype.phonetypeid}}</td>                  
             <td>{{phonetype.phonetype}}</td>                  
             <td>{{phonetype.active | activeString}}</td>  
-            <td><button>Update</button></td>
-            <td><button>Delete</button></td>
+            <td><button ng-click="showUpdate($index)">Update</button></td>
+            <td><button ng-click="deletePhoneType(phonetype.phonetypeid)">Delete</button></td>
         </tr>
     </table>
+    
+
+  
+    <div ng-show="update"> 
+        <h3>Update Phone Type</h3> 
+        <label>Phone Type:</label> 
+        <input type="text" name="updatephonetype" value="" placeholder="" ng-model="updatephonetype" />
+        <label>Active:</label> 
+        <input type="number" max="1" min="0" name="updateactive" value="" ng-model="updateactive" /> 
+        <input type="hidden"  name="updatephonetypeid" value="" ng-model="updatephonetypeid" />
+        <input type="submit" value="Submit" ng-click="updatePhoneType()" />
+        <input type="submit" value="Cancel" ng-click="update=false" />
+    </div>
+    
+    
 </div>
 
 <div class="content footer">

@@ -96,6 +96,9 @@ class PhoneService implements IService {
         return $errors;
     }
     
+    public function idExist($id) {
+        return $this->getPhoneDAO()->idExisit($id);
+    }
     
     public function read($id) {
         return $this->getPhoneDAO()->read($id);

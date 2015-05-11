@@ -54,17 +54,24 @@ class PhoneRequest implements IRequest {
     
     public function PUT( IModel $model ) {
         $id = intval($model->getId());
-        $phoneTypeModel = $this->service->getNewPhoneModel();
-        $phoneTypeModel->map($model->getRequestData());
-        $phoneTypeModel->setPhonetypeid($id);
+        $phoneModel = $this->service->getNewPhoneModel();
+        $phoneModel->map($model->getRequestData());
+        $phoneModel->setPhoneid($id);
         
         if ( !$this->service->idExist($id) ) {
             throw new NoContentRequestException($id . ' ID does not exist');
         }
         
-        if ( $this->service->update($phoneTypeModel) ) {
+        if ( $this->service->update($phoneModel) ) {
             throw new ContentCreatedException('Created');           
         }
+                
+        $errors = $this->service->validate($phoneModel);
+        
+        if ( count($errors) > 0 ) {
+            throw new ValidationException($errors, 'Phone Not Updated');
+        }        
+        
         throw new ConflictRequestException('New Phone Not Updated for id ' . $id);
     }
     

@@ -14,8 +14,8 @@ myApp.constant('config', {
     },
     "models" : {
         "phonetype" : {
-            "Phonetype" : '',
-            "Active" : ''
+            "phonetype" : '',
+            "active" : ''
         },
         "phone" : {
             "phone" : '',

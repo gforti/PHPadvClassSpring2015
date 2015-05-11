@@ -12,8 +12,8 @@ appServices.factory('phoneTypesProvider', ['$http', 'config', function($http, co
             return $http.get(url);
         },
         "postPhoneType": function (phonetype, active) {
-            model.Phonetype = phonetype;
-            model.Active = active;
+            model.phonetype = phonetype;
+            model.active = active;
             return $http.post(url, model);
         },
         "deletePhoneType" : function (phonetypeid) {
@@ -22,8 +22,8 @@ appServices.factory('phoneTypesProvider', ['$http', 'config', function($http, co
         },
         "updatePhoneType" : function (phonetypeid, phonetype, active) {  
             var _url = url + phonetypeid;
-            model.Phonetype = phonetype;
-            model.Active = active;
+            model.phonetype = phonetype;
+            model.active = active;
             return $http.put(_url, model);
         }
     };
@@ -45,6 +45,17 @@ appServices.factory('phonesProvider', ['$http', 'config', function($http, config
             model.active = active;
             return $http.post(url, model);
         },
+        "deletePhone" : function (phoneid) {
+            var _url = url + phoneid;
+            return $http.delete(_url);
+        },
+         "updatePhone" : function (phoneid, phonetype, phonetypeid, active) {  
+            var _url = url + phoneid;
+            model.phone = phonetype;
+            model.phonetypeid = phonetypeid;
+            model.active = active;
+            return $http.put(_url, model);
+        }
     };
 }]);
 

@@ -88,6 +88,13 @@ appControllers.controller('PhoneTypesCtrl', ['$scope', '$log', 'phoneTypesProvid
         $scope.phonetype = '';
         
         
+        $scope.update = false;
+
+        $scope.updatephoneid = '';
+        $scope.updatephone = '';
+        $scope.updatephonetype = '';
+        $scope.updateactive = '';
+        
         
         $scope.addPhone = function() {
 
@@ -100,7 +107,52 @@ appControllers.controller('PhoneTypesCtrl', ['$scope', '$log', 'phoneTypesProvid
 
         };
         
+        $scope.showUpdate = function(index) {
+
+            var phone = $scope.phones[index];
+
+            $scope.updatephoneid = phone.phoneid;
+            $scope.updatephone = phone.phone;
+            $scope.updatephonetype = getPhoneType(phone.phonetypeid);
+            $scope.updateactive = phone.active;
+            $scope.update = true;
+
+        };
         
+        
+        function getPhoneType(id) {
+            var i = $scope.phoneTypes.length;
+            
+            while ( i-- ) {
+                if ( $scope.phoneTypes[i].phonetypeid === id ) {
+                    break;
+                }
+            }
+            
+           return $scope.phoneTypes[i]; 
+        };
+
+        $scope.updatePhone = function() {
+
+            phonesProvider.updatePhone($scope.updatephoneid, $scope.updatephone, $scope.updatephonetype.phonetypeid, $scope.updateactive).success(function(response) {
+                $log.log(response);
+                getPhones();
+            }).error(function (response, status) {
+               $log.log(response);
+            });   
+
+            $scope.update = false;
+        };
+        
+        $scope.deletePhone = function(phoneid) {
+
+            phonesProvider.deletePhone(phoneid).success(function(response) {
+                $log.log(response);
+                getPhones();
+            }).error(function (response, status) {
+               $log.log(response);
+            });        
+        };
        
         
         function getPhones() {   

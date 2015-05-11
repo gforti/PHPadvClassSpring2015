@@ -9,30 +9,21 @@
   
         <label>Phone:</label>            
         <input type="text" name="phone" value="" placeholder="" ng-model="phone" />
-        <br /><br />
+        
         <label>Active:</label>
         <input type="number" max="1" min="0" name="active" value="" ng-model="active" />
-        <br /><br />
+        
         <label>Phone Type:</label>
-        <!--<select name="phonetypeidss">
-            <option ng-repeat="phonetype in phoneTypes" value="{{phonetype.phonetypeid}}">{{phonetype.phonetype}}</option>               
-        </select> -->
-
         <select name="phonetypeid" ng-model="phonetype" ng-options="phone.phonetype for phone in phoneTypes"></select>
-
-         <br /><br />
-         <input type="hidden"  name="phoneid" value="" />
-
-         <input type="submit" value="Submit" ng-click="addPhone()" />
+        
+        <input type="hidden"  name="phoneid" value="" />
+        <input type="submit" value="Submit" ng-click="addPhone()" />
         
 
     <br />
     <br /> 
 
-    <button>Add Phone</button>
-    <br />
-    <br /> 
-
+    
     <table class="gridtable">
         <thead>
             <tr>
@@ -54,10 +45,30 @@
             <td>{{phone.active | activeString}}</td>  
             <td>{{phone.logged}}</td>  
             <td>{{phone.lastupdated}}</td>  
-            <td><button>Update</button></td>
-            <td><button>Delete</button></td>
+            <td><button ng-click="showUpdate($index)">Update</button></td>
+            <td><button ng-click="deletePhone(phone.phoneid)">Delete</button></td>
         </tr>
     </table>
+    
+     <div ng-show="update"> 
+        <h3>Update Phone</h3> 
+        
+        <label>Phone:</label> 
+        <input type="text" name="updatephone" value="" placeholder="" ng-model="updatephone" />
+        
+        <label>Phone Type:</label>
+        <select name="updatephonetypeid" ng-model="updatephonetype" ng-options="phone.phonetype for phone in phoneTypes"></select>
+        
+        <label>Active:</label> 
+        <input type="number" max="1" min="0" name="updateactive" value="" ng-model="updateactive" /> 
+        
+        <input type="hidden"  name="updatephoneid" value="" ng-model="updatephoneid" />
+        
+        <input type="submit" value="Submit" ng-click="updatePhone()" />
+        <input type="submit" value="Cancel" ng-click="update=false" />
+    </div>
+    
+    
 </div>
 
 <div class="content footer">

@@ -136,25 +136,50 @@ class RestServer implements IService {
         $data = array();// file_get_contents("php://input");
         
         $verb = $this->getHTTPVerb();
-                
-        switch($verb) {
-            case 'DELETE':
-            case 'POST':
-                $data = filter_input_array(INPUT_POST);
-                break;
-            case 'GET':
-                $data = filter_input_array(INPUT_GET);
-                break;
-            case 'PUT':
-                parse_str(file_get_contents('php://input'), $data);            
-                break;       
-        }
-       
+        
+        /*if( strpos(filter_input(INPUT_SERVER, 'CONTENT_TYPE'), "application/json") !== false) {
+            $data = json_decode(trim(file_get_contents('php://input')), true);
+            $this->checkJSON();
+        } else { */ 
+        
+            switch($verb) {
+                case 'DELETE':
+                case 'POST':
+                    $data = filter_input_array(INPUT_POST);
+                    break;
+                case 'GET':
+                    $data = filter_input_array(INPUT_GET);
+                    break;
+                case 'PUT':
+                    parse_str(file_get_contents('php://input'), $data);            
+                    break;       
+            }
+        
+         //}
+        
         return $data;
     }
     
     
-    
+    protected function checkJSON() {
+         switch ( json_last_error() ) {
+          case JSON_ERROR_NONE:
+          { //data UTF-8 compliant
+            //tell client to recieve JSON data and send           
+          }
+          break;
+          case JSON_ERROR_SYNTAX:
+          case JSON_ERROR_UTF8:
+          case JSON_ERROR_DEPTH:
+          case JSON_ERROR_STATE_MISMATCH:
+          case JSON_ERROR_CTRL_CHAR:
+              throw new BadRequestException(json_last_error_msg());           
+          break;
+          default:
+             throw new BadRequestException('JSON encode error Unknown error');
+          break;
+        }
+    }
     
     
     protected function setStatusCode($code) {       
@@ -169,7 +194,10 @@ class RestServer implements IService {
     }
    
     protected function getFullJSONReponse() {
-        return json_encode($this->getFullReponse(), JSON_PRETTY_PRINT);
+        
+        $json = json_encode($this->getFullReponse(), JSON_PRETTY_PRINT);
+        
+        return $json;
     }
     
     protected function getStatusCodes() {

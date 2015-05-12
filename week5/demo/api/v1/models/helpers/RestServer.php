@@ -48,7 +48,7 @@ class RestServer implements IService {
         
         header("Access-Control-Allow-Orgin: *");
         header("Access-Control-Allow-Methods: GET, POST, UPDATE, DELETE");
-        header("Content-Type: application/json");
+        header("Content-Type: application/json; charset=utf8");
                 
         set_exception_handler(array($this, 'handleException'));
         
@@ -137,11 +137,15 @@ class RestServer implements IService {
         
         $verb = $this->getHTTPVerb();
         
-        /*if( strpos(filter_input(INPUT_SERVER, 'CONTENT_TYPE'), "application/json") !== false) {
+        /*
+         * set always_populate_raw_post_data = -1 so you can pass json
+         * to your rest server instead of post data         * 
+         *
+        if( strpos(filter_input(INPUT_SERVER, 'CONTENT_TYPE'), "application/json") !== false) {
             $data = json_decode(trim(file_get_contents('php://input')), true);
             $this->checkJSON();
-        } else { */ 
-        
+        } else { 
+        */
             switch($verb) {
                 case 'DELETE':
                 case 'POST':

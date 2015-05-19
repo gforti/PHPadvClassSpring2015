@@ -1,6 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+    </head>
+     <body>
 <?php
-
-header('Content-Type: text/plain; charset=utf-8');
 
 /*
  * make sure php_fileinfo.dll extension is enable in php.ini
@@ -65,4 +71,6 @@ try {
     echo $e->getMessage();
 
 }
-
+?>
+  </body>
+</html>

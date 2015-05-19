@@ -129,7 +129,7 @@
             
             function updateProgress (e) {               
                 if (e.lengthComputable) {
-                  uploadProgress.innerHTML = (e.loaded / e.total) * 100 + '%';                
+                  uploadProgress.innerHTML = Math.ceil(e.loaded/e.total) * 100 + '%';;                
                 } else {
                   // Unable to compute progress information since the total size is unknown
                 }

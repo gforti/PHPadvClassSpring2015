@@ -28,7 +28,27 @@
         <div class="progress"></div>
         <pre id="img-file-content"></pre>
         <script type="text/javascript">
-            
+            /*
+            switch(fileList[0].type) {
+                case 'image/png': 
+                case 'image/gif': 
+                case 'image/jpeg': 
+                case 'image/pjpeg':
+                case 'text/plain':
+                case 'text/html':
+                case 'application/x-zip-compressed':
+                case 'application/pdf':
+                case 'application/msword':
+                case 'application/vnd.ms-excel':
+                case 'video/mp4':
+                case 'audio/mp3':
+                case 'audio/mpeg':
+                   break;
+                default:
+                    'Unsupported file type!';
+                return false;
+           }
+            */
             // call initialization file
             if (window.File && window.FileList && window.FileReader) {
                 document.addEventListener("DOMContentLoaded", Init);

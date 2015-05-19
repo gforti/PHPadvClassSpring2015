@@ -9,8 +9,6 @@ $status_codes = array(
                 );
 
 $status = 200;
-$message = '';
-
 
 /*
  * make sure php_fileinfo.dll extension is enable in php.ini

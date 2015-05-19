@@ -5,7 +5,7 @@ header("Content-Type: application/json; charset=utf8");
 
 $status_codes = array(  
                     200 => 'OK',           
-                    500 => 'Internal Server Errorrrrrr',
+                    500 => 'Internal Server Error',
                 );
 
 $status = 200;

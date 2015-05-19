@@ -59,7 +59,7 @@ try {
     
     $fileName =  sha1_file($_FILES['upfile']['tmp_name']); 
     $location = sprintf('./uploads/%s.%s', $fileName, $ext); 
-    
+        
     if ( !move_uploaded_file( $_FILES['upfile']['tmp_name'], $location) ) {
         throw new RuntimeException('Failed to move uploaded file.');
     }

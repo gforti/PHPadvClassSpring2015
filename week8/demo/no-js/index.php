@@ -13,5 +13,8 @@
             Send this file: <input name="upfile" type="file" />
             <input type="submit" value="Send File" />
         </form>
+        
+        <!-- display imaged
+        <img src="uploads/30420d1a9afb2bcb60335812569af4435a59ce17.jpg" /> -->
     </body>
 </html>

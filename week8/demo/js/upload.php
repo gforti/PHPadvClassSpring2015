@@ -1,6 +1,16 @@
 <?php
 
-header('Content-Type: text/plain; charset=utf-8');
+header("Access-Control-Allow-Orgin: *");
+header("Content-Type: application/json; charset=utf8");
+
+$status_codes = array(  
+                    200 => 'OK',           
+                    500 => 'Internal Server Errorrrrrr',
+                );
+
+$status = 200;
+$message = '';
+
 
 /*
  * make sure php_fileinfo.dll extension is enable in php.ini
@@ -58,11 +68,22 @@ try {
         throw new RuntimeException('Failed to move uploaded file.');
     }
 
-    echo 'File is uploaded successfully.';
+    $message = 'File is uploaded successfully.';
 
 } catch (RuntimeException $e) {
 
-    echo $e->getMessage();
+    $message = $e->getMessage();
+    $status = 500;
 
 }
 
+
+header("HTTP/1.1 " . $status . " " . $status_codes[$status]);
+
+$response = array(
+    "status" => $status,
+    "status_message" => $status_codes[$status],
+    "message" => $message    
+);
+
+echo json_encode($response, JSON_PRETTY_PRINT);

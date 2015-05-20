@@ -17,3 +17,9 @@ $dbConfig = array(
         "DB_PASSWORD"=>''
     );
             
+   
+if ( null !== filter_input(INPUT_GET, 'logout') ) {
+    session_destroy();
+    header("Location: login.php");
+    die();
+}

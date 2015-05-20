@@ -18,6 +18,8 @@
                                 
                 if ( $signupDao->login($model) ) {
                     echo '<h2>Login Sucess</h2>';
+                    $util->setLoggedin(true);
+                    $util->redirect('is-logged-in.php');
                 } else {
                     echo '<h2>Login Failed</h2>';
                 }

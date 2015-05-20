@@ -1,10 +1,6 @@
 <?php include './bootstrap.php'; ?>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -12,7 +8,16 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        // put your code here
+            $util = new Util();
+            if ( !$util->isLoggedin() ) {
+                // redirect to login page
+                echo '<h2>Not logged in</h2>';
+            } else {
+                echo '<h2>Logged in</h2>';
+            }
+        
         ?>
+        
+        <p><a href="?logout">Logout</a></p>
     </body>
 </html>

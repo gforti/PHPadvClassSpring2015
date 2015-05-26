@@ -9,7 +9,8 @@
         <?php
         
         $password = 'myPass';
-        echo password_hash($password, PASSWORD_DEFAULT), '<br />';
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        echo $hash, '<br />';
         echo password_hash($password, PASSWORD_DEFAULT), '<br />';
         echo password_hash($password, PASSWORD_DEFAULT), '<br />';
         
@@ -17,6 +18,9 @@
         
         echo sha1($password), '<br />';
         echo sha1($password), '<br />';
+        
+        
+        echo password_verify($password, $hash);
         
         ?>
         

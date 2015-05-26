@@ -66,7 +66,7 @@ class SignupDAO {
         $db = $this->getDB();
         $binds = array( ":id" => $model->getId(),
                         ":email" => $model->getEmail(),
-                        ":password" => $model->getPassword(),
+                        ":password" => password_hash($model->getPassword(), PASSWORD_DEFAULT),
                         ":active" => $model->getActive()
                     );
 
